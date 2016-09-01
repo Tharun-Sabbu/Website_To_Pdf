@@ -1,0 +1,86 @@
+﻿<phone:PhoneApplicationPage 
+    x:Class="WEBSITE_TO_PDF.Page4"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
+    xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit" 
+    FontFamily="{StaticResource PhoneFontFamilyNormal}"
+    FontSize="{StaticResource PhoneFontSizeNormal}"
+    Foreground="{StaticResource PhoneForegroundBrush}"
+    SupportedOrientations="Portrait" Orientation="Portrait"
+    mc:Ignorable="d" d:DesignHeight="728" d:DesignWidth="480"
+    shell:SystemTray.IsVisible="False" xmlns:my="clr-namespace:Microsoft.Advertising.Mobile.UI;assembly=Microsoft.Advertising.Mobile.UI" xmlns:my1="clr-namespace:Coding4Fun.Toolkit.Controls;assembly=Coding4Fun.Toolkit.Controls">
+	<phone:PhoneApplicationPage.ApplicationBar>
+		<shell:ApplicationBar Mode="Default" IsVisible="True" Opacity="10">
+			<shell:ApplicationBar.MenuItems>
+				<shell:ApplicationBarMenuItem Text="open link on ie" Click="ie_CLick"/>
+				<shell:ApplicationBarMenuItem Text="pin link to start screen" Click="pintostart_Click"/>
+			</shell:ApplicationBar.MenuItems>
+			<shell:ApplicationBarIconButton IconUri="/icons/appbar.back.rest.png" Text="Back" Click="BackBtn_Click"/>
+			<shell:ApplicationBarIconButton IconUri="/icons/appbar.save.rest.png" Text="Save to Pdf" Click="SaveBtn_Click"/>
+			<shell:ApplicationBarIconButton IconUri="/icons/appbar.next.rest.png" Text="Forward" Click="ForwardBtn_Click"/>
+			<shell:ApplicationBarIconButton IconUri="/icons/appbar.feature.email.rest.png" Text="Share" Click="share_click"/>
+		</shell:ApplicationBar>
+	</phone:PhoneApplicationPage.ApplicationBar>
+
+    <!--LayoutRoot is the root grid where all page content is placed-->
+    <Grid x:Name="LayoutRoot" Background="Transparent">
+    	<VisualStateManager.VisualStateGroups>
+    		<VisualStateGroup x:Name="VisualStateGroup"/>
+    	</VisualStateManager.VisualStateGroups>
+    	<Grid.ColumnDefinitions>
+    		<ColumnDefinition Width="0.881*"/>
+    		<ColumnDefinition Width="0.119*"/>
+    	</Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="0.126*" MinHeight="88"/>
+            <RowDefinition Height="0.874*" />
+        </Grid.RowDefinitions>
+
+        <!--TitlePanel contains the name of the application and page title-->
+        <!--ContentPanel - place additional content here-->
+        <Grid x:Name="ContentPanel" Grid.Row="1" Margin="8,8,0,0" Grid.ColumnSpan="2">
+        	<Grid.ColumnDefinitions>
+        		<ColumnDefinition Width="249*"/>
+                <ColumnDefinition Width="42*" />
+                <ColumnDefinition Width="31*"/>
+        		<ColumnDefinition Width="79*"/>
+        		<ColumnDefinition Width="54*"/>
+        	</Grid.ColumnDefinitions>
+            <toolkit:GestureService.GestureListener>
+                <toolkit:GestureListener Flick="GestureListener_Flick"></toolkit:GestureListener>
+            </toolkit:GestureService.GestureListener>
+            <phone:WebBrowser HorizontalAlignment="Stretch" IsScriptEnabled="True" x:Name="webBrowser1" VerticalAlignment="Top" Height="606" Grid.ColumnSpan="5" Background="{StaticResource PhoneTextBoxSelectionForegroundBrush}" Foreground="{StaticResource PhoneTextBoxSelectionForegroundBrush}" BorderThickness="2" Margin="-7,-35,0,0" BorderBrush="{StaticResource PhoneTextBoxSelectionForegroundBrush}" />
+            <my:AdControl AdUnitId=""  AdRefreshed="adControl1_AdRefreshed" ErrorOccurred="adControl1_ErrorOccurred" ApplicationId="" Grid.ColumnSpan="4" Height="50" HorizontalAlignment="Stretch" Margin="80,578,36,0" Name="adControl1" VerticalAlignment="Top" Width="300" d:LayoutOverrides="GridBox"  />
+            <InkPresenter Height="65" Name="ink1" Margin="-7,-100,0,0" VerticalAlignment="Top" Background="Gray" Grid.ColumnSpan="5">
+            	<my1:RoundButton Content="" ImageSource="refresh.png" Height="53" HorizontalAlignment="Left" x:Name="roundButton1" Width="66" Click="button2_Click" Background="{StaticResource TransparentBrush}" Canvas.Top="8" BorderBrush="{StaticResource PhoneTextBoxSelectionForegroundBrush}" Foreground="{StaticResource PhoneTextBoxSelectionForegroundBrush}" />
+            	<toolkit:PhoneTextBox Height="78" Hint="Bing search" HorizontalAlignment="Stretch" KeyUp="textBox1_KeyUp" x:Name="phoneTextBox1" VerticalAlignment="Top"  InputScope="Search" Background="{StaticResource PhoneTextBoxSelectionForegroundBrush}" BorderBrush="{StaticResource TransparentBrush}" TextChanged="phoneTextBox1_TextChanged" FontSize="24" GotFocus="phonetextbox_focus" Canvas.Left="52" Width="372" Canvas.Top="-9" />
+                <my1:RoundButton Content="" ImageSource="stop.png" Height="46" HorizontalAlignment="Left" x:Name="roundToggleButton1" Visibility="Visible" VerticalAlignment="Top" BorderBrush="{StaticResource PhoneTextBoxSelectionForegroundBrush}" Width="67"  GotFocus="phoneclick_focus" Click="roundToggleButton1_Click" Canvas.Left="341" Canvas.Top="8" Foreground="#FF1BA1E2" />
+                <Button x:Name="button1" HorizontalAlignment="Stretch" Click="button1_Click" Foreground="{StaticResource PhoneContrastForegroundBrush}" BorderBrush="{StaticResource TransparentBrush}" Height="74" VerticalAlignment="Top" d:LayoutOverrides="HorizontalAlignment, GridBox" Grid.Column="1" Canvas.Left="399" Canvas.Top="-7" Width="89">
+                    <Button.Background>
+                        <ImageBrush ImageSource="bing.jpg" />
+                    </Button.Background>
+                </Button>
+            </InkPresenter>
+        </Grid>
+        
+        <ProgressBar Height="12" Margin="8,58,0,0" x:Name="progress" IsIndeterminate="True" VerticalAlignment="Top" Foreground="#FF00FF16" BorderThickness="100000,10000000,100000,1000000" FontSize="48" RenderTransformOrigin="0.499,0.583" BorderBrush="{StaticResource TransparentBrush}" Background="#FF00FF16" Grid.ColumnSpan="2" Opacity="10000" Visibility="Collapsed"/>
+        
+    </Grid>
+ 
+    <!--Sample code showing usage of ApplicationBar-->
+    <!--<phone:PhoneApplicationPage.ApplicationBar>
+        <shell:ApplicationBar IsVisible="True" IsMenuEnabled="True">
+            <shell:ApplicationBarIconButton IconUri="/Images/appbar_button1.png" Text="Button 1"/>
+            <shell:ApplicationBarIconButton IconUri="/Images/appbar_button2.png" Text="Button 2"/>
+            <shell:ApplicationBar.MenuItems>
+                <shell:ApplicationBarMenuItem Text="MenuItem 1"/>
+                <shell:ApplicationBarMenuItem Text="MenuItem 2"/>
+            </shell:ApplicationBar.MenuItems>
+        </shell:ApplicationBar>
+    </phone:PhoneApplicationPage.ApplicationBar>-->
+
+</phone:PhoneApplicationPage>
