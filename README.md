@@ -1,4 +1,4 @@
 # Website To Pdf
 Converts Websites To Pdf
 
-Application is supported on Windows Phone 7.X, 8.X and Windows Mobile 10.
+Application is supported on Windows Phone 7.x, 8.x and Windows Mobile 10.
